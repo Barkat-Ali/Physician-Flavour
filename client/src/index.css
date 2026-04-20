@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+body {
+  background-color: #f5f5dc;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: rgb(32, 66, 44);
+  text-shadow: none;
+  margin-top: 1vh;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+}
+
+p {
+  margin: 1vh;
+}
+
+ul {
+  list-style-type: square;
+  margin-left: 2vw;
+}
+
+.rotating-container {
+  position: relative;
+  width: 40vw;
+  height: 60vh;
+  margin: 0 auto;
+}
+
+.rotating-image {
+  position: absolute;
+  width: 20vw;
+  height: 30vh;
+  border-radius: 40%;
+  object-fit: cover;
+  animation: orbit 18s linear infinite;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@keyframes orbit {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg) translateX(10vw) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg) translateX(10vw) rotate(-360deg);
+  }
+}
+
+.rotating-image:nth-child(1) {
+  animation-delay: 0s;
+}
+.rotating-image:nth-child(2) {
+  animation-delay: -6s;
+}
+.rotating-image:nth-child(3) {
+  animation-delay: -12s;
+}
