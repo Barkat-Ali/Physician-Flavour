@@ -22,24 +22,25 @@ const normalizeApiBaseUrl = (value) => {
   }
 };
 
-const API_BASE = normalizeApiBaseUrl(import.meta.env.VITE_API_BASE_URL);
-const ADMIN_KEY_STORAGE_KEY = "pf_admin_access_key";
+const API_BASE = import.meta.env.VITE_API_BASE_URL;
 
-const parseJsonSafely = async (response) => {
-  const contentType = response.headers.get("content-type") || "";
+async function request(path, options = {}) {
+  const response = await fetch(`${API_BASE}${path}`, {
+    headers: {
+      "Content-Type": "application/json",
+      ...(options.headers || {})
+    },
+    ...options
+  });
 
-  if (!contentType.toLowerCase().includes("application/json")) {
-    const text = await response.text();
-    return { json: null, text };
+  const data = await response.json().catch(() => null);
+
+  if (!response.ok) {
+    throw new Error(data?.message || "Request failed");
   }
 
-  try {
-    const json = await response.json();
-    return { json, text: "" };
-  } catch (_error) {
-    return { json: null, text: "" };
-  }
-};
+  return data;
+}
 
 const getStoredAdminAccessKey = () => {
   if (typeof window === "undefined") {
