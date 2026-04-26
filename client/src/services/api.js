@@ -67,6 +67,7 @@ export function getAdminAccessKey() {
 
 async function request(path, options = {}) {
   const adminAccessKey = options.admin ? getStoredAdminAccessKey() : "";
+
   const mergedHeaders = {
     "Content-Type": "application/json",
     ...(options.headers || {})
@@ -78,7 +79,7 @@ async function request(path, options = {}) {
 
   const { admin, ...requestOptions } = options;
 
-  const requestUrl = new URL(path, `${API_BASE}/`).toString();
+  const requestUrl = `${API_BASE}${path}`;
 
   const response = await fetch(requestUrl, {
     headers: mergedHeaders,
