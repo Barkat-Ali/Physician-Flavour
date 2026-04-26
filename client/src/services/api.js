@@ -22,24 +22,21 @@ const normalizeApiBaseUrl = (value) => {
   }
 };
 
-const API_BASE = import.meta.env.VITE_API_BASE_URL;
+const ADMIN_KEY_STORAGE_KEY = "physician_flavour_admin_key";
+const API_BASE = normalizeApiBaseUrl(import.meta.env.VITE_API_BASE_URL);
 
-async function request(path, options = {}) {
-  const response = await fetch(`${API_BASE}${path}`, {
-    headers: {
-      "Content-Type": "application/json",
-      ...(options.headers || {})
-    },
-    ...options
-  });
+async function parseJsonSafely(response) {
+  const text = await response.text();
 
-  const data = await response.json().catch(() => null);
-
-  if (!response.ok) {
-    throw new Error(data?.message || "Request failed");
+  if (!text) {
+    return { json: null, text: "" };
   }
 
-  return data;
+  try {
+    return { json: JSON.parse(text), text };
+  } catch (_error) {
+    return { json: null, text };
+  }
 }
 
 const getStoredAdminAccessKey = () => {
