@@ -1,5 +1,45 @@
-const API_BASE = import.meta.env.VITE_API_BASE_URL || "http://localhost:5000/api";
+const normalizeApiBaseUrl = (value) => {
+  const raw = String(value || "").trim();
+  const fallback = "http://localhost:5000/api";
+
+  if (!raw) {
+    return fallback;
+  }
+
+  // Fix common typo: https/example.com/api
+  const protocolFixed = raw.replace(/^https?\/(?!\/)/i, (match) => `${match}/`);
+
+  try {
+    const parsed = new URL(protocolFixed);
+    const normalizedPath = parsed.pathname.replace(/\/+$/, "");
+    const withApiSuffix = normalizedPath.endsWith("/api")
+      ? normalizedPath
+      : `${normalizedPath}/api`;
+
+    return `${parsed.origin}${withApiSuffix}`;
+  } catch (_error) {
+    return fallback;
+  }
+};
+
+const API_BASE = normalizeApiBaseUrl(import.meta.env.VITE_API_BASE_URL);
 const ADMIN_KEY_STORAGE_KEY = "pf_admin_access_key";
+
+const parseJsonSafely = async (response) => {
+  const contentType = response.headers.get("content-type") || "";
+
+  if (!contentType.toLowerCase().includes("application/json")) {
+    const text = await response.text();
+    return { json: null, text };
+  }
+
+  try {
+    const json = await response.json();
+    return { json, text: "" };
+  } catch (_error) {
+    return { json: null, text: "" };
+  }
+};
 
 const getStoredAdminAccessKey = () => {
   if (typeof window === "undefined") {
@@ -37,25 +77,29 @@ async function request(path, options = {}) {
 
   const { admin, ...requestOptions } = options;
 
-  const response = await fetch(`${API_BASE}${path}`, {
+  const requestUrl = new URL(path, `${API_BASE}/`).toString();
+
+  const response = await fetch(requestUrl, {
     headers: mergedHeaders,
     ...requestOptions
   });
 
-  if (!response.ok) {
-    let message = "Request failed";
+  const { json, text } = await parseJsonSafely(response);
 
-    try {
-      const body = await response.json();
-      message = body.message || message;
-    } catch (_error) {
-      // Keep fallback message when non-JSON response is returned.
-    }
+  if (!response.ok) {
+    const message =
+      (json && json.message) ||
+      (text && text.trim().slice(0, 160)) ||
+      `Request failed with status ${response.status}`;
 
     throw new Error(message);
   }
 
-  return response.json();
+  if (json === null) {
+    throw new Error("API returned a non-JSON response.");
+  }
+
+  return json;
 }
 
 export function fetchDietAnalysis(query, serving) {

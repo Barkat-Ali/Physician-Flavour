@@ -21,7 +21,21 @@ Deploy the frontend and backend as two separate Vercel projects.
 ### Config used
 
 - `server/vercel.json`
-- `server/api/index.js`
+- File-based serverless handlers in `server/api/**/*.js`
+
+### API route mapping
+
+- `GET /api/health` -> `server/api/health.js`
+- `GET /api/diet` -> `server/api/diet/index.js`
+- `GET /api/diet/suggestions` -> `server/api/diet/suggestions.js`
+- `GET|POST /api/recipes` -> `server/api/recipes/index.js`
+- `GET /api/recipes/:name` -> `server/api/recipes/[name].js`
+- `GET /api/recipes/admin/pending` -> `server/api/recipes/admin/pending.js`
+- `PATCH /api/recipes/admin/:id/approve` -> `server/api/recipes/admin/[id]/approve.js`
+- `DELETE /api/recipes/admin/:id` -> `server/api/recipes/admin/[id].js`
+- `GET|POST /api/subscriptions` -> `server/api/subscriptions/index.js`
+- `PATCH|DELETE /api/subscriptions/:id` -> `server/api/subscriptions/[id].js`
+- `POST /api/admin/login` -> `server/api/admin/login.js`
 
 ## 2) Frontend project (client folder)
 
