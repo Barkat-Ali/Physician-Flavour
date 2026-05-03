@@ -139,7 +139,7 @@ function AdminPage() {
 
   if (!isAdminAuthenticated) {
     return (
-      <section style={{ padding: "20px", minHeight: "100vh", display: "grid", placeItems: "start center" }}>
+      <section className="admin-page" style={{ padding: "20px", minHeight: "100vh", display: "grid", placeItems: "start center" }}>
         <div style={{ width: "100%", maxWidth: "440px", backgroundColor: "white", border: "1px solid rgba(50, 109, 75, 0.18)", borderRadius: "12px", padding: "20px" }}>
           <h1 style={{ color: "rgb(32, 66, 44)", fontWeight: 800, marginBottom: "10px" }}>Admin Login</h1>
           <p style={{ marginBottom: "14px", color: "#4b4b4b" }}>
@@ -182,8 +182,8 @@ function AdminPage() {
   }
 
   return (
-    <section style={{ padding: "20px", minHeight: "100vh" }}>
-      <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
+    <section className="admin-page" style={{ padding: "20px", minHeight: "100vh" }}>
+      <div className="admin-topbar" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "12px", flexWrap: "wrap" }}>
         <h1 style={{ color: "rgb(32, 66, 44)", fontWeight: 800, marginBottom: "10px" }}>Admin Dashboard</h1>
         <button
           type="button"
@@ -212,17 +212,17 @@ function AdminPage() {
         </p>
       )}
 
-      <div style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", marginTop: "20px" }}>
-        <div style={{ backgroundColor: "white", borderRadius: "12px", padding: "18px", border: "1px solid rgba(50, 109, 75, 0.14)" }}>
+      <div className="admin-panels" style={{ display: "grid", gap: "20px", gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", marginTop: "20px" }}>
+        <div className="admin-card" style={{ backgroundColor: "white", borderRadius: "12px", padding: "18px", border: "1px solid rgba(50, 109, 75, 0.14)" }}>
           <h2 style={{ color: "rgb(32, 66, 44)", fontWeight: 800, marginBottom: "12px" }}>Subscriptions</h2>
           <div style={{ display: "grid", gap: "12px" }}>
             {subscriptions.map((subscription) => (
-              <div key={subscription._id} style={{ border: "1px solid #e6e6e6", borderRadius: "10px", padding: "12px" }}>
+              <div key={subscription._id} className="admin-info-card" style={{ border: "1px solid #e6e6e6", borderRadius: "10px", padding: "12px" }}>
                 <p style={{ fontWeight: 800, color: "#243" }}>{subscription.email}</p>
                 <p style={{ fontSize: "13px", color: subscription.active ? "#2e7d32" : "#9e9e9e", marginTop: "4px" }}>
                   {subscription.active ? "Active" : "Inactive"}
                 </p>
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "10px" }}>
+                <div className="admin-actions" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "10px" }}>
                   <button
                     type="button"
                     onClick={() => handleToggleSubscription(subscription._id, true)}
@@ -251,17 +251,17 @@ function AdminPage() {
           </div>
         </div>
 
-        <div style={{ backgroundColor: "white", borderRadius: "12px", padding: "18px", border: "1px solid rgba(50, 109, 75, 0.14)" }}>
+        <div className="admin-card" style={{ backgroundColor: "white", borderRadius: "12px", padding: "18px", border: "1px solid rgba(50, 109, 75, 0.14)" }}>
           <h2 style={{ color: "rgb(32, 66, 44)", fontWeight: 800, marginBottom: "12px" }}>Pending Recipes</h2>
           <div style={{ display: "grid", gap: "12px" }}>
             {pendingRecipes.map((recipe) => (
-              <div key={recipe._id} style={{ border: "1px solid #e6e6e6", borderRadius: "10px", padding: "12px" }}>
+              <div key={recipe._id} className="admin-info-card" style={{ border: "1px solid #e6e6e6", borderRadius: "10px", padding: "12px" }}>
                 <p style={{ fontWeight: 800, color: "#243" }}>{recipe.name}</p>
                 <p style={{ fontSize: "13px", color: "#555", marginTop: "4px" }}>{recipe.description}</p>
                 <p style={{ fontSize: "12px", color: "#666", marginTop: "4px" }}>
                   {recipe.category} | {recipe.calories} kcal | {recipe.prepTimeMinutes} min
                 </p>
-                <div style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "10px" }}>
+                <div className="admin-actions" style={{ display: "flex", gap: "8px", flexWrap: "wrap", marginTop: "10px" }}>
                   <button
                     type="button"
                     onClick={() => handleApprove(recipe._id)}

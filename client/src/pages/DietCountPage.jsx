@@ -5,7 +5,7 @@ const defaultFoods = ["Banana", "Spinach", "Apple", "Chicken Breast"];
 
 function NutrientChip({ label, value, unit }) {
   return (
-    <div style={{
+    <div className="nutrient-chip" style={{
       borderRadius: "12px",
       border: "1px solid #e0e0e0",
       backgroundColor: "white",
@@ -75,14 +75,14 @@ function DietCountPage() {
   };
 
   return (
-    <div style={{ backgroundColor: "#f5f5dc", padding: "20px", minHeight: "100vh" }}>
+    <div className="diet-page" style={{ backgroundColor: "#f5f5dc", padding: "20px", minHeight: "100vh" }}>
       <h1 style={{ color: "rgb(32, 66, 44)", textShadow: "none", margin: "20px 0", fontWeight: 800, letterSpacing: "0.02em" }}>Diet Count</h1>
       <p style={{ margin: "20px" }}>
         Check vitamins, minerals, macros, and calories per serving. Enter a food name,
         choose your serving in grams, and get a fast nutritional snapshot.
       </p>
 
-      <form onSubmit={handleSubmit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "12px", margin: "20px", alignItems: "flex-end" }}>
+      <form className="diet-form" onSubmit={handleSubmit} style={{ display: "grid", gridTemplateColumns: "1fr 1fr 1fr 1fr", gap: "12px", margin: "20px", alignItems: "flex-end" }}>
         <label>
           <span style={{ fontWeight: "bold", color: "#333" }}>Food name</span>
           <input
@@ -159,7 +159,7 @@ function DietCountPage() {
       )}
 
       {analysis && (
-        <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "20px", margin: "20px" }}>
+        <div className="diet-results" style={{ display: "grid", gridTemplateColumns: "2fr 1fr", gap: "20px", margin: "20px" }}>
           <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "8px", border: "1px solid #ddd" }}>
             <p style={{ fontSize: "12px", fontWeight: "bold", color: "#4CAF50" }}>NUTRITION RESULT</p>
             <h2 style={{ color: "rgb(32, 66, 44)", textShadow: "none", marginTop: "10px", marginBottom: "10px", fontWeight: 800, letterSpacing: "0.01em" }}>
@@ -176,7 +176,7 @@ function DietCountPage() {
               </span>
             </h2>
 
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
+            <div className="nutrient-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: "12px" }}>
               <NutrientChip label="Calories" value={nutrients.calories} unit="kcal" />
               <NutrientChip label="Protein" value={nutrients.protein} unit="g" />
               <NutrientChip label="Carbs" value={nutrients.carbs} unit="g" />
@@ -189,7 +189,7 @@ function DietCountPage() {
             </div>
           </div>
 
-          <div style={{ backgroundColor: "white", padding: "20px", borderRadius: "8px", border: "1px solid #ddd" }}>
+          <div className="diet-benefits" style={{ backgroundColor: "white", padding: "20px", borderRadius: "8px", border: "1px solid #ddd" }}>
             <h3 style={{ color: "rgb(32, 66, 44)", textShadow: "none", marginBottom: "12px", fontWeight: 800, letterSpacing: "0.01em" }}>Health Benefits</h3>
             <ul style={{ listStyle: "none", padding: 0 }}>
               {analysis.healthBenefits.map((benefit) => (

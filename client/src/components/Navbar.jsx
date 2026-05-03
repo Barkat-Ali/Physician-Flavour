@@ -10,6 +10,7 @@ const links = [
 function Navbar() {
   return (
     <header
+      className="site-header"
       style={{
         position: "sticky",
         top: 0,
@@ -21,6 +22,7 @@ function Navbar() {
       }}
     >
       <nav
+        className="site-nav"
         style={{
           display: "flex",
           alignItems: "stretch",
@@ -31,7 +33,7 @@ function Navbar() {
           padding: "10px 18px"
         }}
       >
-        <div style={{ display: "flex", alignItems: "center", gap: "12px" }}>
+        <div className="site-brand" style={{ display: "flex", alignItems: "center", gap: "12px" }}>
           <div
             style={{
               width: "48px",
@@ -58,7 +60,7 @@ function Navbar() {
               />
             </svg>
           </div>
-          <div style={{ lineHeight: 1.05 }}>
+          <div className="site-brand-copy" style={{ lineHeight: 1.05 }}>
             <div style={{ color: "white", fontSize: "1.05rem", fontWeight: 800 }}>Physician Flavour</div>
             <div style={{ color: "rgba(255, 255, 255, 0.75)", fontSize: "0.82rem" }}>
               Diet intelligence and recipe sharing
@@ -66,7 +68,7 @@ function Navbar() {
           </div>
         </div>
 
-        <div style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", justifyContent: "flex-end" }}>
+        <div className="site-nav-links" style={{ display: "flex", alignItems: "center", gap: "10px", flexWrap: "wrap", justifyContent: "flex-end" }}>
           {links.map((link) => (
             <NavLink
               key={link.to}

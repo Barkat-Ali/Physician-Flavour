@@ -109,13 +109,13 @@ function RecipePage() {
   };
 
   return (
-    <div style={{ backgroundColor: "#f5f5dc", padding: "20px", minHeight: "100vh" }}>
+    <div className="recipe-page" style={{ backgroundColor: "#f5f5dc", padding: "20px", minHeight: "100vh" }}>
       <h1 style={{ color: "rgb(32, 66, 44)", textShadow: "none", margin: "20px 0", fontWeight: 800, letterSpacing: "0.02em" }}>Recipe Studio</h1>
       <p style={{ margin: "20px" }}>
         Explore favorite meals, desserts, drinks, and salads with nutrition-aware filters. Search by name, share your own recipes!
       </p>
 
-      <div style={{ margin: "20px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px" }}>
+      <div className="recipe-filters" style={{ margin: "20px", display: "grid", gridTemplateColumns: "1fr 1fr 1fr", gap: "12px" }}>
         <input
           value={search}
           onChange={(event) => setSearch(event.target.value)}
@@ -162,7 +162,7 @@ function RecipePage() {
       </div>
 
       {showShareForm && (
-        <div style={{
+        <div className="recipe-share-panel" style={{
           margin: "20px",
           padding: "20px",
           backgroundColor: "white",
@@ -170,25 +170,28 @@ function RecipePage() {
           border: "2px solid rgb(128, 216, 55)"
         }}>
           <h2 style={{ color: "rgb(32, 66, 44)", textShadow: "none", marginBottom: "15px", fontWeight: 800, letterSpacing: "0.01em" }}>Share Your Recipe</h2>
-          <form onSubmit={handleShareSubmit} style={{ display: "grid", gap: "15px", gridTemplateColumns: "1fr 1fr" }}>
+          <form className="recipe-share-form" onSubmit={handleShareSubmit} style={{ display: "grid", gap: "15px", gridTemplateColumns: "repeat(2, minmax(0, 1fr))" }}>
             <input
+              className="recipe-share-field recipe-share-full"
               placeholder="Recipe Name *"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / 3" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / -1", minWidth: 0, width: "100%" }}
               required
             />
             <textarea
+              className="recipe-share-field recipe-share-full"
               placeholder="Recipe Description *"
               value={formData.description}
               onChange={(e) => setFormData({ ...formData, description: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / 3", minHeight: "80px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / -1", minHeight: "80px", minWidth: 0, width: "100%" }}
               required
             />
             <select
+              className="recipe-share-field"
               value={formData.category}
               onChange={(e) => setFormData({ ...formData, category: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", minWidth: 0, width: "100%" }}
             >
               <option value="main">Main Dish</option>
               <option value="salad">Salad</option>
@@ -196,39 +199,45 @@ function RecipePage() {
               <option value="drink">Drink</option>
             </select>
             <input
+              className="recipe-share-field"
               placeholder="Prep Time (minutes)"
               type="number"
               value={formData.prepTime}
               onChange={(e) => setFormData({ ...formData, prepTime: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", minWidth: 0, width: "100%" }}
             />
             <textarea
+              className="recipe-share-field recipe-share-full"
               placeholder="Ingredients (one per line)"
               value={formData.ingredients}
               onChange={(e) => setFormData({ ...formData, ingredients: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / 3", minHeight: "80px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / -1", minHeight: "80px", minWidth: 0, width: "100%" }}
             />
             <textarea
+              className="recipe-share-field recipe-share-full"
               placeholder="Steps (one per line)"
               value={formData.steps}
               onChange={(e) => setFormData({ ...formData, steps: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / 3", minHeight: "80px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", gridColumn: "1 / -1", minHeight: "80px", minWidth: 0, width: "100%" }}
             />
             <input
+              className="recipe-share-field"
               placeholder="Calories (approx)"
               type="number"
               value={formData.calories}
               onChange={(e) => setFormData({ ...formData, calories: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", minWidth: 0, width: "100%" }}
             />
             <input
+              className="recipe-share-field"
               placeholder="Diet Tags (comma-separated, e.g., vegan, high-protein)"
               value={formData.dietTags}
               onChange={(e) => setFormData({ ...formData, dietTags: e.target.value })}
-              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px" }}
+              style={{ padding: "10px", border: "1px solid #ccc", borderRadius: "6px", minWidth: 0, width: "100%" }}
             />
             <button
               type="submit"
+              className="recipe-share-submit"
               style={{
                 backgroundColor: "#4CAF50",
                 color: "white",
@@ -237,7 +246,9 @@ function RecipePage() {
                 border: "none",
                 fontWeight: "bold",
                 cursor: "pointer",
-                gridColumn: "1 / 3"
+                gridColumn: "1 / -1",
+                minWidth: 0,
+                width: "100%"
               }}
             >
               Submit Recipe
@@ -271,7 +282,7 @@ function RecipePage() {
           No recipes matched your filters.
         </p>
       ) : (
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(380px, 1fr))", gap: "20px", margin: "20px" }}>
+        <div className="recipe-grid" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fill, minmax(380px, 1fr))", gap: "20px", margin: "20px" }}>
           {recipes.map((recipe, index) => {
             const dietTags = normalizeList(recipe.dietTags);
             const ingredients = normalizeList(recipe.ingredients);
@@ -280,7 +291,7 @@ function RecipePage() {
             const hasImage = Boolean(String(recipe.imageUrl || "").trim());
 
             return (
-            <article key={cardKey} style={{ backgroundColor: "white", borderRadius: "8px", overflow: "hidden", border: "1px solid #ddd", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
+            <article key={cardKey} className="recipe-card" style={{ backgroundColor: "white", borderRadius: "8px", overflow: "hidden", border: "1px solid #ddd", boxShadow: "0 2px 4px rgba(0,0,0,0.1)" }}>
               {hasImage ? (
                 <img
                   src={recipe.imageUrl}

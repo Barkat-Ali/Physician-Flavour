@@ -42,10 +42,10 @@ function Footer() {
   };
 
   return (
-    <footer style={{ width: "100%", backgroundColor: "#4CAF50", marginTop: "40px" }}>
-      <div style={{ width: "100%", maxWidth: "1400px", margin: "0 auto", padding: "40px 20px" }}>
+    <footer className="site-footer" style={{ width: "100%", backgroundColor: "#4CAF50", marginTop: "40px" }}>
+      <div className="site-footer-inner" style={{ width: "100%", maxWidth: "1400px", margin: "0 auto", padding: "40px 20px" }}>
         {/* Top Section - About, Links, Contact, Services */}
-        <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "40px", marginBottom: "40px" }}>
+        <div className="footer-panels" style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))", gap: "40px", marginBottom: "40px" }}>
           {/* About Section */}
           <div>
             <h3 style={{ color: "white", fontWeight: 800, marginBottom: "12px", fontSize: "16px" }}>About Us</h3>
@@ -98,14 +98,14 @@ function Footer() {
         <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.3)", margin: "0 0 40px 0" }} />
 
         {/* Newsletter Section */}
-        <div style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", borderRadius: "12px", padding: "30px", marginBottom: "30px", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
+        <div className="footer-newsletter" style={{ backgroundColor: "rgba(255, 255, 255, 0.08)", borderRadius: "12px", padding: "30px", marginBottom: "30px", border: "1px solid rgba(255, 255, 255, 0.1)" }}>
           <div style={{ maxWidth: "600px", margin: "0 auto" }}>
             <h3 style={{ color: "white", fontWeight: 800, marginBottom: "8px", fontSize: "18px", textAlign: "center" }}>Stay Updated</h3>
             <p style={{ color: "rgba(255, 255, 255, 0.85)", fontSize: "13px", marginBottom: "20px", textAlign: "center" }}>
               Subscribe to get nutrition tips, recipe updates, and health insights delivered to your inbox.
             </p>
             
-            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "12px" }}>
+            <div className="footer-newsletter-form" style={{ display: "flex", gap: "12px", flexWrap: "wrap", marginBottom: "12px" }}>
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -197,7 +197,7 @@ function Footer() {
         </div>
 
         {/* Bottom Section - Copyright and Links */}
-        <div style={{ borderTop: "1px solid rgba(255, 255, 255, 0.2)", paddingTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
+        <div className="footer-bottom" style={{ borderTop: "1px solid rgba(255, 255, 255, 0.2)", paddingTop: "20px", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "16px", flexWrap: "wrap" }}>
           <p style={{ color: "rgba(255, 255, 255, 0.8)", fontSize: "12px", margin: 0 }}>
             © 2026 Physician Flavour. All rights reserved by National Food Authority.
           </p>

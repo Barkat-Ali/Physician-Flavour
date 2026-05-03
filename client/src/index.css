@@ -5,6 +5,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 html,
@@ -16,6 +17,13 @@ body,
 body {
   background-color: #f5f5dc;
   font-family: Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+}
+
+img,
+video,
+svg {
+  max-width: 100%;
 }
 
 h1,
@@ -74,4 +82,277 @@ ul {
 }
 .rotating-image:nth-child(3) {
   animation-delay: -12s;
+}
+
+@media (max-width: 1024px) {
+  .site-nav {
+    flex-direction: column;
+    align-items: stretch !important;
+    gap: 14px !important;
+  }
+
+  .site-brand {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .site-nav-links {
+    width: 100%;
+    justify-content: flex-start !important;
+  }
+
+  .site-nav-links > * {
+    flex: 1 1 calc(50% - 10px);
+    justify-content: center;
+    text-align: center;
+  }
+
+  .home-why-section,
+  .home-diet-section {
+    flex-direction: column;
+  }
+
+  .home-why-copy,
+  .home-why-visual,
+  .home-diet-copy,
+  .home-diet-visual {
+    width: 100% !important;
+    margin-right: 0 !important;
+  }
+
+  .home-favorites-grid {
+    flex-direction: column;
+    gap: 0 !important;
+  }
+
+  .home-favorites-grid > ul {
+    margin-bottom: 12px;
+  }
+
+  .diet-form,
+  .recipe-filters {
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .diet-results {
+    grid-template-columns: 1fr !important;
+  }
+
+  .nutrient-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .recipe-grid {
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)) !important;
+  }
+
+  .recipe-share-form input,
+  .recipe-share-form select,
+  .recipe-share-form textarea,
+  .recipe-share-form button {
+    grid-column: 1 / -1 !important;
+  }
+
+  .recipe-share-form > * {
+    min-width: 0;
+  }
+
+  .footer-newsletter-form {
+    flex-direction: column;
+  }
+
+  .footer-newsletter-form input,
+  .footer-newsletter-form button {
+    width: 100%;
+  }
+
+  .footer-bottom {
+    flex-direction: column;
+    align-items: flex-start !important;
+  }
+
+  .admin-panels {
+    grid-template-columns: 1fr !important;
+  }
+
+  .admin-card,
+  .admin-info-card {
+    min-width: 0;
+  }
+
+  .admin-info-card {
+    overflow-wrap: anywhere;
+  }
+
+  .admin-actions {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    width: 100%;
+  }
+
+  .admin-actions > button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .site-header {
+    position: sticky;
+  }
+
+  .site-nav {
+    padding: 10px 14px !important;
+  }
+
+  .site-brand-copy div:first-child {
+    font-size: 0.95rem !important;
+  }
+
+  .site-brand-copy div:last-child {
+    font-size: 0.72rem !important;
+  }
+
+  .site-nav-links > * {
+    flex-basis: 100%;
+  }
+
+  .home-page h1 {
+    font-size: 1.8rem !important;
+    line-height: 1.15;
+    text-align: center;
+  }
+
+  .home-intro,
+  .home-why-section,
+  .home-diet-section,
+  .recipe-page,
+  .diet-page,
+  .admin-page {
+    padding-left: 14px !important;
+    padding-right: 14px !important;
+  }
+
+  .home-why-copy,
+  .home-diet-copy {
+    width: 100% !important;
+  }
+
+  .home-why-copy > div > div {
+    flex-direction: column;
+    gap: 0 !important;
+  }
+
+  .home-why-copy ul {
+    margin-bottom: 12px;
+  }
+
+  .home-why-visual img,
+  .home-diet-visual img {
+    max-width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+  }
+
+  .home-why-visual > div {
+    padding: 8px !important;
+  }
+
+  .diet-form,
+  .recipe-filters {
+    grid-template-columns: 1fr !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .diet-form button {
+    width: 100%;
+  }
+
+  .diet-results,
+  .recipe-grid,
+  .admin-panels {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+  }
+
+  .nutrient-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  .recipe-share-form {
+    grid-template-columns: 1fr !important;
+  }
+
+  .recipe-share-panel,
+  .diet-results > div,
+  .footer-newsletter,
+  .admin-panels > div,
+  .admin-page > div {
+    padding: 16px !important;
+  }
+
+  .footer-panels {
+    gap: 24px !important;
+  }
+
+  .footer-newsletter {
+    padding: 20px !important;
+  }
+
+  .site-footer-inner {
+    padding: 28px 14px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .site-nav-links {
+    gap: 8px !important;
+  }
+
+  .site-nav-links > * {
+    width: 100%;
+  }
+
+  .recipe-share-panel,
+  .admin-card {
+    padding: 14px !important;
+  }
+
+  .admin-actions {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-actions > button {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .home-hero-marquee h1 {
+    font-size: 1.45rem !important;
+  }
+
+  .diet-page h1,
+  .recipe-page h1,
+  .admin-page h1 {
+    font-size: 1.7rem;
+  }
+
+  .diet-results > div,
+  .recipe-card,
+  .admin-panels > div,
+  .site-footer-inner > div {
+    min-width: 0;
+  }
+
+  .footer-bottom {
+    gap: 10px !important;
+  }
+
+  .footer-bottom > div {
+    gap: 10px !important;
+  }
 }

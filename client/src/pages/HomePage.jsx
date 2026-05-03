@@ -5,16 +5,16 @@ import samosaImage from "../assets/samosa.png";
 
 function HomePage() {
   return (
-    <div style={{ backgroundColor: "#f5f5dc", width: "100%", minHeight: "100vh" }}>
+    <div className="home-page" style={{ backgroundColor: "#f5f5dc", width: "100%", minHeight: "100vh" }}>
       {/* Marquee Welcome */}
-      <marquee behavior="slide" style={{ backgroundColor: "#f5f5dc", padding: "2px" }}>
+      <marquee className="home-hero-marquee" behavior="slide" style={{ backgroundColor: "#f5f5dc", padding: "2px" }}>
         <h1 style={{ color: "rgb(17, 231, 92)", textShadow: "none", margin: 0, fontWeight: 800, letterSpacing: "0.02em",fontSize: "2.5rem" }}>
           Welcome To Physician Flavour!
         </h1>
       </marquee>
 
       {/* Introduction */}
-      <div style={{ padding: "20px", margin: "10px" }}>
+      <div className="home-intro" style={{ padding: "20px", margin: "10px" }}>
         <p>
           Get a perfectly balanced diet plan tailored to your nutritional needs, based on the vitamins, minerals, and
           macronutrients in each food you consume. Our scientifically designed meal plans ensure optimal health, energy,
@@ -27,8 +27,8 @@ function HomePage() {
 
       {/* Why Choose Section */}
       <h2 style={{ margin: "10px" }}>Why Choose Physician Flavour?</h2>
-      <div style={{ display: "flex", columnGap: "0%", width: "100%", padding: "0 20px" }}>
-        <div style={{ width: "60vw" }}>
+      <div className="home-why-section" style={{ display: "flex", columnGap: "0%", width: "100%", padding: "0 20px" }}>
+        <div className="home-why-copy" style={{ width: "60vw" }}>
           <p>
             🔬 <b>Science-Backed Nutrition-</b> Precision meal plans based on vitamins, macros & health needs. <br />
             🍎 <b>Smart Food Database-</b> Search any food to see its nutrients + health benefits. <br />
@@ -38,7 +38,7 @@ function HomePage() {
           <h2>Most Favourite</h2>
           <p>You will find these in Recipe Section.</p>
           <div>
-            <div style={{ display: "flex", columnGap: "20%" }}>
+            <div className="home-favorites-grid" style={{ display: "flex", columnGap: "20%" }}>
               <ul>
                 <li>Biryani</li>
                 <li>Chilli Chicken </li>
@@ -90,7 +90,7 @@ function HomePage() {
           </div>
         </div>
 
-        <div style={{ width: "40vw", marginRight: "2%" }}>
+        <div className="home-why-visual" style={{ width: "40vw", marginRight: "2%" }}>
           <div
             style={{
               display: "grid",
@@ -137,8 +137,8 @@ function HomePage() {
 
       {/* Diet Count Section */}
       <h2 style={{ margin: "30px 20px 0 20px" }}>Diet Count: Your Personal Nutrient Calculator</h2>
-      <div style={{ display: "flex", alignItems: "flex-start", gap: "5px", margin: "30px 20px" }}>
-        <div style={{ width: "60%" }}>
+      <div className="home-diet-section" style={{ display: "flex", alignItems: "flex-start", gap: "5px", margin: "30px 20px" }}>
+        <div className="home-diet-copy" style={{ width: "60%" }}>
           <p>
             Ever wondered how much vitamin C is in an orange or protein in spinach? Our <strong>Diet Count</strong>
             tool analyzes:
@@ -193,7 +193,7 @@ function HomePage() {
           </Link>
         </div>
 
-        <div style={{ width: "40%" }}>
+        <div className="home-diet-visual" style={{ width: "40%" }}>
           <img
             src={dietImage}
             alt="Nutrition Analysis"
